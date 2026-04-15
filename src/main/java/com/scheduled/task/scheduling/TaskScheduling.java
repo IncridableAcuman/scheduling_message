@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 @Component
@@ -16,7 +14,6 @@ public class TaskScheduling {
     @Value("${client.name}")
     private String clientName;
     private static final Logger logger =  LoggerFactory.getLogger(TaskScheduling.class);
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     private final MessageUtil messageUtil;
 
@@ -24,10 +21,6 @@ public class TaskScheduling {
         this.messageUtil=messageUtil;
     }
 
-    @Scheduled(fixedRate = 5000)
-    public void reportCurrentTime(){
-        logger.info("This is now {}",dateFormat.format(new Date()));
-    }
 
 
     @Scheduled(fixedDelay = 5000)
